@@ -1,15 +1,11 @@
-// Module Imports
 const express = require("express");
 const mysql = require("mysql2");
 require("dotenv").config();
 const cors = require("cors");
-// Enable express
 const app = express();
 
-// Middlewares
 app.use(cors());
 app.use(express.json());
-app.use(express.urlencoded({ extended: true }));
 
 const pool = mysql.createPool({
   host: process.env.MYSQL_HOST,
@@ -21,7 +17,6 @@ const pool = mysql.createPool({
   queueLimit: 0,
 });
 
-// Default endpoint
 app.get("/", (req, res) => {
   res.send("Hey the backend is connected.");
 });
