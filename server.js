@@ -20,39 +20,13 @@ const pool = mysql.createPool({
   queueLimit: 0,
 });
 
-// Default endpoint
-app.get("/", (req, res) => {
-  res.send("Remote server for mission X is working!!!.");
-});
 
-//Testing endpoint to fetch all student's data from server
-app.get("/api/students", (req, res) => {
-  pool.query( "SELECT * FROM `missio20_202305-team4`.student;",
-    function (err, result) {
-      if (err) return console.log(err);
-      console.log(result);
-      res.send(result);
-    }
-  );
-});
-
-// end point only fetches a single student according to their student id
-app.get("/api/students/:id", (req, res) => {
-  const studentId = req.params.id;
-  console.log(studentId);
-  pool.query(`SELECT * FROM \`missio20_202305-team4\`.student WHERE student_id = '${studentId}'`,
-    (err, result) => {
-      res.send(result);
-    }
-  );
-});
-
-// end point only fetches a single student according to their student id and teacher's name also
+// Luis' 2nd end point for Student Profile Viewer. Fetches a single student along with teacher name, dynamically by changing student ID
 app.get("/api/student_teacher/:id", (req, res) => {
   const studentId = req.params.id;
   console.log(studentId);
   pool.query(
-    `SELECT student.*, teacher.teacher_name FROM student JOIN teacher ON student.teacher_id = teacher.teacher_id WHERE student_id = '${studentId}'`,
+    `SELECT student.*, teacher.teacher_name FROM student JOIN teacher ON student.teacher_id = teacher.teacher_id WHERE student_id = ?`,[studentId],
     (err, result) => {
       res.send(result);
     }
