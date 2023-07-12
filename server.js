@@ -22,7 +22,7 @@ const pool = mysql.createPool({
 
 // Default endpoint
 app.get("/", (req, res) => {
-  res.send("Hey the remote server for mission X is working!!!.");
+  res.send("Remote server for mission X is working!!!.");
 });
 
 //Testing endpoint to fetch all student's data from server
@@ -41,6 +41,18 @@ app.get("/api/students/:id", (req, res) => {
   const studentId = req.params.id;
   console.log(studentId);
   pool.query(`SELECT * FROM \`missio20_202305-team4\`.student WHERE student_id = '${studentId}'`,
+    (err, result) => {
+      res.send(result);
+    }
+  );
+});
+
+// end point only fetches a single student according to their student id and teacher's name also
+app.get("/api/student_teacher/:id", (req, res) => {
+  const studentId = req.params.id;
+  console.log(studentId);
+  pool.query(
+    `SELECT student.*, teacher.teacher_name FROM student JOIN teacher ON student.teacher_id = teacher.teacher_id WHERE student_id = '${studentId}'`,
     (err, result) => {
       res.send(result);
     }
