@@ -2,9 +2,9 @@
   "name": "mission-x-backend-2305-t4",
   "version": "1.0.0",
   "description": "backend mx",
-  "main": "LoginServer.js",
+  "main": "server.js",
   "scripts": {
-    "dev": "nodemon LoginServer.js"
+    "dev": "nodemon server.js"
   },
   "author": "Kelsie",
   "license": "ISC",
