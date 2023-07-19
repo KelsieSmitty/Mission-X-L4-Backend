@@ -10,44 +10,16 @@ const app = express();
 // Middlewares
 app.use(cors("http://localhost:3000"));
 
-const pool = mysql.createPool({
-  host: process.env.MYSQL_HOST,
-  user: process.env.MYSQL_USER,
-  password: process.env.MYSQL_PASS,
-  database: process.env.MYSQL_DATABASE,
-  waitForConnections: true,
-  connectionLimit: 10,
-  queueLimit: 0,
-});
+//routes
 
+const projectLibraryRoutes = require("./routes/projectLibraryRoutes");
+const studentRoutes = require("./routes/studentRoutes");
 
-
-//Luis' 1st end point for Project Library Page. Fetches all data stored in project table from remote server
-app.get("/api/project-library/", (req, res) => {
-  pool.query("SELECT * FROM project;",
-   function (err, result) {
-    if (err) return console.log(err);
-    console.log(result);
-    res.send(result);
-  });
-});
-
-
-// Luis' 2nd end point for Student Profile Viewer. Fetches a single student along with teacher name, dynamically by changing student ID
-app.get("/api/student_teacher/:id", (req, res) => {
-  const studentId = req.params.id;
-  console.log(studentId);
-  pool.query(
-    `SELECT student.*, teacher.teacher_name FROM student JOIN teacher ON student.teacher_id = teacher.teacher_id WHERE student_id = ?`,[studentId],
-    (err, result) => {
-      res.send(result);
-    }
-  );
-});
+app.use(projectLibraryRoutes);
+app.use(studentRoutes);
 
 const port = process.env.PORT;
-app
-  .listen(port, () =>
-    console.log(`Listening at http://localhost:${port} I see you baby!--Groove Armada---`)
+app.listen(port, () => 
+    console.log(`Listening at http://localhost:${port}`)
   )
   .on("error", (error) => console.error(error));
