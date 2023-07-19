@@ -21,6 +21,18 @@ const pool = mysql.createPool({
 });
 
 
+
+//Luis' 1st end point for Project Library Page. Fetches all data stored in project table from remote server
+app.get("/api/project-library/", (req, res) => {
+  pool.query("SELECT * FROM project;",
+   function (err, result) {
+    if (err) return console.log(err);
+    console.log(result);
+    res.send(result);
+  });
+});
+
+
 // Luis' 2nd end point for Student Profile Viewer. Fetches a single student along with teacher name, dynamically by changing student ID
 app.get("/api/student_teacher/:id", (req, res) => {
   const studentId = req.params.id;
