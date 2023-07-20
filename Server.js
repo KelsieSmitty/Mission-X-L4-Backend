@@ -11,15 +11,11 @@ app.use(express.json());
 
 //routes:
 
-const projectLibraryRoutes = require("./routes/projectLibraryRoutes");
-const studentRoutes = require("./routes/studentRoutes");
 const studentLoginRoutes = require("./routes/studentLoginRoutes");
 const studentSignupRoutes = require("./routes/studentSignupRoutes");
 const teacherLoginRoutes = require("./routes/teacherLoginRoutes");
 const teacherSignupRoutes = require("./routes/teacherSignupRoutes");
 
-app.use(projectLibraryRoutes);
-app.use(studentRoutes);
 app.use(studentLoginRoutes);
 app.use(studentSignupRoutes);
 app.use(teacherLoginRoutes);

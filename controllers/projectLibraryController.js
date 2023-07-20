@@ -11,4 +11,3 @@ const projectLibraryController = (req, res) => {
 module.exports = projectLibraryController;
 
 //Luis' 1st end point for Project Library Page. Fetches all data stored in project table from remote server
-
