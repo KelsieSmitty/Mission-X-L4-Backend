@@ -1,13 +1,4 @@
 {
-<<<<<<< HEAD
-  "dependencies": {
-    "cors": "^2.8.5",
-    "dotenv": "^16.3.1",
-    "express": "^4.18.2",
-    "mysql2": "^3.5.0",
-    "nodemon": "^2.0.22"
-  }
-=======
     "name": "mysql2",
     "version": "1.0.0",
     "description": "",
@@ -23,7 +14,9 @@
         "dotenv": "^16.3.1",
         "express": "^4.18.2",
         "mysql2": "^2.3.3",
-        "react-csv": "^2.2.2"
+        "react-csv": "^2.2.2",
+        "nodemon": "^2.0.22"
     }
->>>>>>> 681763c4562a7d93cb6a892de4c1ae964199a6e0
+
+
 }
